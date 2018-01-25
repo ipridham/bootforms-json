@@ -32,21 +32,21 @@ class BootFormsServiceProvider extends ServiceProvider
 
     protected function registerErrorStore()
     {
-        $this->app['adamwathan.form.errorstore'] = $this->app->register(function ($app) {
+        $this->app->bind('adamwathan.form.errorstore', function ($app) {
             return new IlluminateErrorStore($app['session.store']);
         });
     }
 
     protected function registerOldInput()
     {
-        $this->app['adamwathan.form.oldinput'] = $this->app->register(function ($app) {
+        $this->app->bind('adamwathan.form.oldinput', function ($app) {
             return new IlluminateOldInputProvider($app['session.store']);
         });
     }
 
     protected function registerFormBuilder()
     {
-        $this->app['adamwathan.form'] = $this->app->register(function ($app) {
+        $this->app->bind('adamwathan.form', function ($app) {
             $formBuilder = new FormBuilder;
             $formBuilder->setErrorStore($app['adamwathan.form.errorstore']);
             $formBuilder->setOldInputProvider($app['adamwathan.form.oldinput']);
@@ -58,21 +58,21 @@ class BootFormsServiceProvider extends ServiceProvider
 
     protected function registerBasicFormBuilder()
     {
-        $this->app['bootform.basic'] = $this->app->register(function ($app) {
+        $this->app->bind('bootform.basic', function ($app) {
             return new BasicFormBuilder($app['adamwathan.form']);
         });
     }
 
     protected function registerHorizontalFormBuilder()
     {
-        $this->app['bootform.horizontal'] = $this->app->register(function ($app) {
+        $this->app->bind('bootform.horizontal', function ($app) {
             return new HorizontalFormBuilder($app['adamwathan.form']);
         });
     }
 
     protected function registerBootForm()
     {
-        $this->app['bootform'] = $this->app->register(function ($app) {
+        $this->app->bind('bootform', function ($app) {
             return new BootForm($app['bootform.basic'], $app['bootform.horizontal']);
         });
     }
