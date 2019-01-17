@@ -4,6 +4,7 @@ use AdamWathan\Form\ErrorStore\IlluminateErrorStore;
 use AdamWathan\Form\FormBuilder;
 use AdamWathan\Form\OldInput\IlluminateOldInputProvider;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class BootFormsServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,8 @@ class BootFormsServiceProvider extends ServiceProvider
         $this->registerBasicFormBuilder();
         $this->registerHorizontalFormBuilder();
         $this->registerBootForm();
+
+        \Illuminate\Support\Facades\View::addLocation(__DIR__ . '/views');
     }
 
     protected function registerErrorStore()
