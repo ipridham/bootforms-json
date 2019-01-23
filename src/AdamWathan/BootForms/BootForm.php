@@ -6,10 +6,6 @@ class BootForm
     private $basicFormBuilder;
     private $horizontalFormBuilder;
 
-    protected $fields;
-
-    protected $model;
-
     public function __construct(BasicFormBuilder $basicFormBuilder, HorizontalFormBuilder $horizontalFormBuilder)
     {
         $this->basicFormBuilder = $basicFormBuilder;
@@ -31,12 +27,6 @@ class BootForm
 
     public function __call($method, $parameters)
     {
-        if($method === 'bind') {
-            if(count($parameters)) {
-                $this->model = $parameters[0];
-            }
-        }
-
         return call_user_func_array([$this->builder, $method], $parameters);
     }
 }
