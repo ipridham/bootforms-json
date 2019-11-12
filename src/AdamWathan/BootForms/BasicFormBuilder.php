@@ -6,6 +6,7 @@ use AdamWathan\BootForms\Elements\GroupWrapper;
 use AdamWathan\BootForms\Elements\HelpBlock;
 use AdamWathan\BootForms\Elements\InputGroup;
 use AdamWathan\Form\FormBuilder;
+use Illuminate\Support\Str;
 
 class BasicFormBuilder
 {
@@ -19,7 +20,7 @@ class BasicFormBuilder
     protected function formGroup($label, $name, $control)
     {
         $label = $this->builder->label($label)->addClass('control-label')->forId($name);
-        $control->id(str_slug($name))->addClass('form-control');
+        $control->id(Str::slug($name))->addClass('form-control');
 
         $formGroup = new FormGroup($label, $control);
 
