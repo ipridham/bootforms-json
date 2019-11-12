@@ -10,7 +10,7 @@
   "license": "MIT",
   "require": {
     "php": ">=5.4.0",
-    "ipridham/form-json": "dev-master"
+    "openplayuk/form-json": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "3.7.*",
